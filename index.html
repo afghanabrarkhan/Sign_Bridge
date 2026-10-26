@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SignBridge | Communication for Everyone</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="finish.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-icon">S</span> SignBridge</a>
+    <nav aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#communicate">Communicate</a>
+      <a href="#learn">Learn</a>
+      <a href="#vocabulary">Vocabulary</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#about">About</a>
+      <a href="#isl-resources">ISL Resources</a>
+      <a href="#alphabet">A–Z Alphabet</a>
+    </nav>
+    <!-- Accessibility Button -->
+   <button
+     type="button"
+     id="accessibilityToggle"
+     class="accessibility-toggle"
+     aria-expanded="false"
+     aria-controls="accessibilityPanel"
+      >
+     ♿ Accessibility
+    </button>
+
+    <!-- Accessibility Settings Panel -->
+   <div
+     id="accessibilityPanel"
+     class="accessibility-panel"
+     hidden
+      >
+     <h3>Accessibility Settings</h3>
+     <p>Adjust the website to suit your needs.</p>
+
+      <div class="accessibility-control">
+        <span>Text Size</span>
+
+        <div class="text-size-buttons">
+            <button type="button" id="decreaseText">A−</button>
+            <button type="button" id="increaseText">A+</button>
+        </div>
+      </div>
+
+      <div class="accessibility-control">
+        <label for="highContrastToggle">High Contrast</label>
+        <input type="checkbox" id="highContrastToggle">
+      </div>
+
+      <div class="accessibility-control">
+        <label for="readingModeToggle">Reading Mode</label>
+        <input type="checkbox" id="readingModeToggle">
+      </div>
+
+      <button
+        type="button"
+        id="resetAccessibility"
+        class="accessibility-reset"
+       >
+        Reset Settings
+      </button>
+    </div>
+    <button class="button button-outline" id="languageToggle" type="button">Language: English</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">COMMUNICATION WITHOUT BARRIERS</p>
+        <h1>Every voice matters.<br><span>Every sign connects.</span></h1>
+        <p class="hero-description">A friendly place to explore sign language, share everyday messages, and learn at your own pace.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#communicate">Start Communicating <span aria-hidden="true">→</span></a>
+          <a class="button button-light" href="#learn">Explore Lessons</a>
+        </div>
+        <p class="small-note">Designed with accessibility, clarity, and inclusion in mind.</p>
+      </div>
+      <div class="hero-art" aria-label="SignBridge welcome illustration">
+        <div class="art-orbit orbit-one"></div>
+        <div class="art-orbit orbit-two"></div>
+        <div class="art-card card-main">
+          <div class="hand-symbol" aria-hidden="true">✋</div>
+          <p>HELLO!</p>
+          <span>Let's connect</span>
+        </div>
+        <div class="floating-chip chip-one">👋 Greetings</div>
+        <div class="floating-chip chip-two">💬 Clear communication</div>
+        <div class="floating-chip chip-three">♥ Learn together</div>
+      </div>
+    </section>
+
+    <section class="section" id="communicate">
+      <div class="section-heading">
+        <p class="eyebrow">COMMUNICATE MODE</p>
+        <h2>Say it your way</h2>
+        <p>Type a message and explore matching signs from the sample library. You can also hear your message spoken aloud.</p>
+      </div>
+      <div class="communicate-panel">
+        <label for="messageInput">Your message</label>
+        <textarea id="messageInput" rows="3" placeholder="Try: Hello, thank you, water, help...">Hello</textarea>
+        <button id="speechBtn" type="button">
+          🎤 Speak Message
+        </button>
+        <!-- Quick Messages -->
+        <div class="quick-messages">
+          <h3>Quick Messages</h3>
+
+          <p>Select a message to communicate quickly.</p>
+
+          <div id="quickMessagesContainer" class="quick-message-buttons">
+           <p>Loading quick messages...</p>
+          </div>
+        </div>
+        <div class="controls">
+          <label class="select-label" for="speechLanguage">Spoken language
+            <select id="speechLanguage">
+              <option value="en-IN">English</option>
+              <option value="hi-IN">Hindi</option>
+            </select>
+          </label>
+          <div class="control-buttons">
+            <button class="button button-primary" id="showSigns" type="button">Show signs</button>
+            <button class="button button-outline" id="speakMessage" type="button">▶ Listen</button>
+          </div>
+        </div>
+        <p class="disclaimer">Demo note: sample cards are placeholders, not verified sign-language translations. Replace them with reviewed Indian Sign Language media before real-world use.</p>
+        <div id="signResults" class="sign-results" aria-live="polite"></div>
+          
+      </div>
+    </section>
+
+    <!-- Interactive A-Z Fingerspelling Chart -->
+    <section class="section alphabet-section" id="alphabet">
+     <div class="section-heading">
+        <p class="eyebrow">LEARN THE ALPHABET</p>
+        <h2>Interactive A–Z Alphabet</h2>
+        <p>
+            Select a letter to explore its fingerspelling reference.
+            Use this chart to practise spelling names and unfamiliar words.
+        </p>
+      </div>
+
+      <div class="alphabet-panel">
+        <label for="alphabetSearch">Search for a letter</label>
+
+        <input
+            type="search"
+            id="alphabetSearch"
+            placeholder="Type a letter, such as A or Z"
+            maxlength="1"
+            aria-label="Search alphabet letters"
+        >
+
+        <div
+            id="alphabetGrid"
+            class="alphabet-grid"
+            aria-label="Alphabet letters"
+        ></div>
+
+        <div
+            id="alphabetDetails"
+            class="alphabet-details"
+            aria-live="polite"
+            hidden
+        >
+            <h3 id="selectedLetter"></h3>
+
+            <div id="alphabetSignMedia" class="alphabet-sign-media"></div>
+
+            <p id="alphabetDescription"></p>
+
+            <p class="alphabet-note">
+                SignBridge does not yet include verified sign images for
+                every letter. Use the official ISL learning resources
+                to confirm each handshape before practising.
+              </p>
+            </div>
+          </div>
+        </section>
+
+    <section class="section learn-section" id="learn">
+      <div class="section-heading">
+        <p class="eyebrow">LEARN MODE</p>
+        <h2>Small lessons. Real progress.</h2>
+        <p>Choose a category to explore a starter lesson. More signs, quizzes, and saved progress can be added next.</p>
+      </div>
+        <div class="lesson-grid" id="lessonGrid">
+         <p>Loading learning categories...</p>
+        </div>
+      <div class="lesson-message" id="lessonMessage" aria-live="polite">Choose a category to begin your first lesson.</div>
+    </section>
+    <!-- Vocabulary Explorer -->
+    <section class="section vocabulary-section" id="vocabulary">
+
+      <div class="section-heading">
+        <p class="eyebrow">EXPLORE WORDS</p>
+          <h2>Vocabulary Explorer</h2>
+          <p>
+            Search everyday words, explore categories, and listen
+            to their pronunciation.
+        </p>
+      </div>
+
+      <div class="vocabulary-container">
+
+        <div class="vocabulary-search">
+            <input
+                type="search"
+                id="vocabularySearch"
+                placeholder="Search words like Hello, Water, Help..."
+                aria-label="Search vocabulary"
+            >
+
+            <select id="vocabularyCategory" aria-label="Filter vocabulary by category">
+                <option value="All">All Categories</option>
+                <option value="Greetings">Greetings</option>
+                <option value="Everyday Needs">Everyday Needs</option>
+                <option value="People and Family">People and Family</option>
+                <option value="Numbers">Numbers</option>
+                <option value="Healthcare">Healthcare</option>
+            </select>
+        </div>
+
+        <p id="vocabularyCount" aria-live="polite">
+            Explore the vocabulary below.
+        </p>
+
+        <div id="vocabularyGrid" class="vocabulary-grid"></div>
+
+        <div id="vocabularyDetails" class="vocabulary-details" hidden>
+            <h3 id="vocabularyWord"></h3>
+            <p id="vocabularyMeaning"></p>
+            <p id="vocabularyWordCategory"></p>
+
+            <button type="button" id="speakVocabularyBtn">
+                🔊 Listen to Pronunciation
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+        <!-- Official ISL Learning Resources -->
+<section id="isl-resources" class="isl-resources">
+    <div class="container">
+        <h2>Learn Indian Sign Language</h2>
+
+        <p class="isl-intro">
+            Explore trusted learning resources to learn Indian Sign Language
+            using videos and educational materials.
+        </p>
+
+        <div class="isl-resource-grid">
+
+            <div class="isl-resource-card">
+                <h3>ISL Dictionary</h3>
+                <p>
+                    Search for words and explore sign-language videos
+                    provided through the official Indian Sign Language Dictionary.
+                </p>
+                <a href="https://divyangjan.depwd.gov.in/islrtc/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="isl-resource-btn">
+                    Explore ISL Dictionary
+                </a>
+            </div>
+
+            <div class="isl-resource-card">
+                <h3>Basic ISL Learning</h3>
+                <p>
+                    Explore introductory learning materials, including
+                    greetings, everyday expressions, and common vocabulary.
+                </p>
+                <a href="https://islrtc.nic.in/document-category/awareness-material/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="isl-resource-btn">
+                    Explore Learning Materials
+                </a>
+            </div>
+
+            <div class="isl-resource-card">
+                <h3>ISL Educational Videos</h3>
+                <p>
+                    Discover educational resources and sign-language
+                    learning videos from official Indian institutions.
+                </p>
+                <a href="https://ciet.ncert.gov.in/sign"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="isl-resource-btn">
+                    Explore Educational Videos
+                </a>
+            </div>
+
+          </div>
+
+          <p class="isl-note">
+            Note: SignBridge links to external learning resources.
+            Its English vocabulary, pronunciation features, and emoji
+            illustrations are not themselves verified ISL translations.
+          </p>
+        </div>
+      </section>
+    <!-- Interactive Quiz Section -->
+    <section class="section quiz-section" id="quiz">
+
+     <div class="section-heading">
+        <p class="eyebrow">TEST YOUR KNOWLEDGE</p>
+        <h2>SignBridge Learning Quiz</h2>
+        <p>
+            Test your communication awareness and learn something new
+            with every question.
+        </p>
+      </div>
+
+      <div class="quiz-card" id="quizCard">
+
+        <div class="quiz-top">
+            <span id="questionNumber">Question 1 of 5</span>
+            <span id="quizScore">Score: 0</span>
+        </div>
+
+        <div class="quiz-progress">
+            <div id="quizProgressBar"></div>
+        </div>
+
+        <h3 id="quizQuestion">Loading question...</h3>
+
+        <div class="quiz-options" id="quizOptions"></div>
+
+        <p id="quizFeedback" aria-live="polite"></p>
+
+        <button id="nextQuestionBtn" class="quiz-next-btn" type="button" hidden>
+            Next Question →
+        </button>
+
+        <div id="quizResult" class="quiz-result" hidden></div>
+
+        <button id="restartQuizBtn" class="quiz-restart-btn" type="button" hidden>
+            Try Again ↻
+        </button>
+
+      </div>
+
+    </section>
+
+    <section class="bottom-banner" id="about">
+      <div><p class="eyebrow">BUILT FOR EVERYONE</p><h2>Learning is better together.</h2><p>SignBridge aims to help people communicate and learn with confidence.</p></div>
+      <a class="button button-light" href="#communicate">Try the demo ↑</a>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#"><span class="brand-icon">S</span> SignBridge</a><span>SignBridge · Capstone project</span></footer>
+  <script src="app.js"></script>
+  <script src="finish.js"></script>
+</body>
+</html>
